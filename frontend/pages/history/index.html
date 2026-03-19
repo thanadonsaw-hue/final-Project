@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order History - PerX Shop</title>
+    <title>Order History - TanX Shop</title>
     <link rel="stylesheet" href="../../assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="brand" onclick="location.href='../../index.html'" style="cursor:pointer">
-            <h2 class="brand-title">PerX Shop</h2>
+            <h2 class="brand-title">TanX Shop</h2>
         </div>
         
         <div class="nav-menu">
@@ -40,7 +40,6 @@
         <div class="auth-modal">
             <button class="close-modal" onclick="closeModal('loginModal')">✕</button>
             <h2 style="margin-bottom: 25px;">เข้าสู่ระบบ</h2>
-            
             <div class="modal-input-group">
                 <input type="text" id="login-username" placeholder="ชื่อผู้ใช้">
             </div>
@@ -48,14 +47,9 @@
                 <input type="password" id="login-password" placeholder="รหัสผ่าน">
                 <i class="fa-solid fa-eye modal-toggle-password" id="login-eye" onclick="togglePassword('login-password', 'login-eye')"></i>
             </div>
-
             <div id="login-alert" class="alert-box error"></div>
-
             <button class="modal-btn-submit" onclick="modalLogin()">เข้าสู่ระบบ</button>
-            
-            <p class="modal-footer-text">
-                ยังไม่มีบัญชี? <a href="#" onclick="switchModal('loginModal', 'registerModal')">สมัครสมาชิกที่นี่</a>
-            </p>
+            <p class="modal-footer-text">ยังไม่มีบัญชี? <a href="#" onclick="switchModal('loginModal', 'registerModal')">สมัครสมาชิกที่นี่</a></p>
         </div>
     </div>
 
@@ -63,7 +57,6 @@
         <div class="auth-modal">
             <button class="close-modal" onclick="closeModal('registerModal')">✕</button>
             <h2 style="margin-bottom: 25px;">สร้างบัญชีใหม่</h2>
-            
             <div class="modal-input-group">
                 <input type="text" id="reg-username" placeholder="ชื่อผู้ใช้ (Username)">
             </div>
@@ -71,23 +64,16 @@
                 <input type="password" id="reg-password" placeholder="รหัสผ่าน (Password)">
                 <i class="fa-solid fa-eye modal-toggle-password" id="reg-eye" onclick="togglePassword('reg-password', 'reg-eye')"></i>
             </div>
-            
             <hr style="border: 0; border-top: 1px solid #f3f4f6; margin: 15px 0;">
-            
             <div class="modal-input-group">
                 <input type="text" id="reg-firstname" placeholder="ชื่อจริง">
             </div>
             <div class="modal-input-group">
                 <input type="text" id="reg-lastname" placeholder="นามสกุล">
             </div>
-
             <div id="reg-alert" class="alert-box"></div>
-
             <button class="modal-btn-submit" onclick="modalRegister()">สมัครสมาชิก</button>
-            
-            <p class="modal-footer-text">
-                มีบัญชีอยู่แล้ว? <a href="#" onclick="switchModal('registerModal', 'loginModal')">เข้าสู่ระบบ</a>
-            </p>
+            <p class="modal-footer-text">มีบัญชีอยู่แล้ว? <a href="#" onclick="switchModal('registerModal', 'loginModal')">เข้าสู่ระบบ</a></p>
         </div>
     </div>
 
@@ -98,6 +84,19 @@
             <div style="display: flex; gap: 10px;">
                 <button onclick="closeCancelModal()" style="flex: 1; padding: 12px; border: none; border-radius: 8px; background: #f3f4f6; color: #374151; font-weight: 600; cursor: pointer;">ปิดหน้าต่าง</button>
                 <button onclick="executeCancelOrder()" style="flex: 1; padding: 12px; border: none; border-radius: 8px; background: #e63946; color: white; font-weight: 600; cursor: pointer;">ยืนยันยกเลิก</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="detailsModal" class="modal-overlay">
+        <div class="details-modal-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 25px; border-bottom: 1px solid #f3f4f6; background: #f9fafb;">
+                <h3 style="margin: 0; font-size: 18px; color: #111827; font-weight: 700;">รายการสินค้าในบิล</h3>
+                <button onclick="closeModal('detailsModal')" style="background: none; border: none; font-size: 20px; cursor: pointer; color: #9ca3af; transition: 0.2s; padding: 0;">✕</button>
+            </div>
+            <div id="details-modal-content" style="max-height: 50vh; overflow-y: auto; padding: 10px 25px;"></div>
+            <div style="padding: 20px 25px; border-top: 1px solid #f3f4f6; background: #fff;">
+                <button onclick="closeModal('detailsModal')" style="width: 100%; padding: 12px; background: #111827; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#374151'" onmouseout="this.style.background='#111827'">ปิดหน้าต่าง</button>
             </div>
         </div>
     </div>
