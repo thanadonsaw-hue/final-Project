@@ -15,7 +15,4 @@ const pool = mysql.createPool({
 const getConnection = async () => {
   return pool
 }
-
-console.log('Database Connected via Docker Port 8820 (Pool)!')
-
 module.exports = { getConnection }
