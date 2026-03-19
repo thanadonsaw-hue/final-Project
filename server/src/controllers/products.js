@@ -1,6 +1,7 @@
 const ProductModel = require('../models/products')
 
-const getAll = async (req, res, next) => {
+//ดึงข้อมูลสินค้าทั้งหมดเพื่อเอาไปโชว์ในหน้า Shop
+const getAll = async (req,res,next) => {
   try {
     const products = await ProductModel.findAll()
     res.json(products)
@@ -9,7 +10,8 @@ const getAll = async (req, res, next) => {
   }
 }
 
-const getById = async (req, res, next) => {
+//ดึงข้อมูลสินค้าแค่ชิ้นเดียวตาม ID
+const getById = async (req,res,next) => {
   try {
     const product = await ProductModel.findById(req.params.id)
     if (!product) return res.status(404).json({ message: 'ไม่พบสินค้าที่ต้องการ' })
@@ -19,7 +21,8 @@ const getById = async (req, res, next) => {
   }
 }
 
-const create = async (req, res, next) => {
+//สร้างสินค้าใหม่พร้อมจัดการระบบอัปโหลดรูปภาพ
+const create = async (req,res,next) => {
   try {
     const { name, price, stock } = req.body
     const image_url = req.file ? req.file.filename : 'Logo(2).png'
@@ -30,10 +33,12 @@ const create = async (req, res, next) => {
   }
 }
 
-const update = async (req, res, next) => {
+//แก้ไขสินค้าแบบยืดหยุ่น
+const update = async (req,res,next) => {
   try {
     const { name, price, stock } = req.body
     const updateData = { name, price, stock }
+    
     if (req.file) updateData.image_url = req.file.filename
     
     const result = await ProductModel.update(req.params.id, updateData)
@@ -43,7 +48,8 @@ const update = async (req, res, next) => {
   }
 }
 
-const remove = async (req, res, next) => {
+//ลบสินค้าออกจากระบบ
+const remove = async (req,res,next) => {
   try {
     const result = await ProductModel.remove(req.params.id)
     res.json({ message: 'ลบสินค้าสำเร็จ', data: result })
@@ -52,4 +58,5 @@ const remove = async (req, res, next) => {
   }
 }
 
+//ส่งออกฟังก์ชันให้ Route ใช้งาน
 module.exports = { getAll, getById, create, update, remove }
