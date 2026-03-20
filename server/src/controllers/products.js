@@ -1,6 +1,5 @@
 const ProductModel = require('../models/products')
 
-//ดึงข้อมูลสินค้าทั้งหมดเพื่อเอาไปโชว์ในหน้า Shop
 const getAll = async (req,res,next) => {
   try {
     const products = await ProductModel.findAll()
@@ -10,7 +9,6 @@ const getAll = async (req,res,next) => {
   }
 }
 
-//ดึงข้อมูลสินค้าแค่ชิ้นเดียวตาม ID
 const getById = async (req,res,next) => {
   try {
     const product = await ProductModel.findById(req.params.id)
@@ -21,7 +19,6 @@ const getById = async (req,res,next) => {
   }
 }
 
-//สร้างสินค้าใหม่พร้อมจัดการระบบอัปโหลดรูปภาพ
 const create = async (req,res,next) => {
   try {
     const { name, price, stock } = req.body
@@ -33,7 +30,6 @@ const create = async (req,res,next) => {
   }
 }
 
-//แก้ไขสินค้าแบบยืดหยุ่น
 const update = async (req,res,next) => {
   try {
     const { name, price, stock } = req.body
@@ -48,7 +44,6 @@ const update = async (req,res,next) => {
   }
 }
 
-//ลบสินค้าออกจากระบบ
 const remove = async (req,res,next) => {
   try {
     const result = await ProductModel.remove(req.params.id)
@@ -58,5 +53,4 @@ const remove = async (req,res,next) => {
   }
 }
 
-//ส่งออกฟังก์ชันให้ Route ใช้งาน
 module.exports = { getAll, getById, create, update, remove }
